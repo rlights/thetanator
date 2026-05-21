@@ -13,28 +13,28 @@ public class StressTestRunner : IDisposable
     private readonly string _baseDir;
     private readonly string _toolsDir;
     private readonly string _primeExePath;
-    // URL to the Windows Service version (Headless)
-    private const string P95_URL = "https://download.mersenne.ca/mirror/gimps/v30/30.19/p95v3019b20.win64.service.zip";
+    // URL to the Standard Windows 64-bit version
+    private const string P95_URL = "https://www.mersenne.org/download/software/v30/30.19/p95v3019b20.win64.zip";
 
     public StressTestRunner()
     {
         _baseDir = AppDomain.CurrentDomain.BaseDirectory;
         _toolsDir = Path.Combine(_baseDir, "tools", "prime95");
-        _primeExePath = Path.Combine(_toolsDir, "ntprime64.exe");
+        _primeExePath = Path.Combine(_toolsDir, "prime95.exe");
     }
 
     public async Task EnsureDownloadedAsync()
     {
         if (File.Exists(_primeExePath))
         {
-            DebugLogger.Log("Prime95 (Headless) already exists locally.");
+            DebugLogger.Log("Prime95 already exists locally.");
         }
         else
         {
             Directory.CreateDirectory(_toolsDir);
-            string zipPath = Path.Combine(_toolsDir, "p95_service.zip");
+            string zipPath = Path.Combine(_toolsDir, "p95_standard.zip");
 
-            DebugLogger.Log($"Prime95 (Headless) not found. Downloading from {P95_URL}...");
+            DebugLogger.Log($"Prime95 not found. Downloading from {P95_URL}...");
 
             using (var client = new HttpClient())
             {
@@ -46,10 +46,10 @@ public class StressTestRunner : IDisposable
                 }
             }
 
-            DebugLogger.Log("Extracting Headless Prime95...");
+            DebugLogger.Log("Extracting Prime95...");
             ZipFile.ExtractToDirectory(zipPath, _toolsDir, true);
             File.Delete(zipPath);
-            DebugLogger.Log("Prime95 Headless setup complete.");
+            DebugLogger.Log("Prime95 setup complete.");
         }
 
         // Optimization: Prepare the INI once during initialization, not in every loop.
@@ -65,9 +65,7 @@ public class StressTestRunner : IDisposable
             throw new FileNotFoundException("Prime95 executable missing. Call EnsureDownloadedAsync first.");
         }
 
-        // Optimization: Removed PreparePrimeIni() from here as it now runs in EnsureDownloadedAsync()
-
-        DebugLogger.Log($"Starting Prime95 (Headless) with working directory: {_toolsDir}");
+        DebugLogger.Log($"Starting Prime95 with working directory: {_toolsDir}");
         ProcessStartInfo startInfo = new ProcessStartInfo
         {
             FileName = _primeExePath,
