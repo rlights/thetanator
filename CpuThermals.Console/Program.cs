@@ -23,10 +23,10 @@ class Program
         // --- High-Rigor Production Defaults ---
         bool isSystemMode = false;
         bool usePreSoak = true;
-        int preSoakDuration = 30;
-        int loops = 7; // n=7 for statistical robustness
-        int soakSeconds = 30; 
-        int idleSeconds = 10; 
+        int? customPreSoakDuration = null;
+        int? customLoops = null;
+        int? customSoakSeconds = null; 
+        int? customIdleSeconds = null; 
         
         // --- Full Argument Parsing ---
         for (int i = 0; i < args.Length; i++)
@@ -35,24 +35,22 @@ class Program
             {
                 case "--system":
                     isSystemMode = true;
-                    if (soakSeconds == 30) soakSeconds = 120;
-                    if (idleSeconds == 10) idleSeconds = 30;
                     break;
                 case "--no-presoak":
                     usePreSoak = false;
                     break;
                 case "--presoak-duration":
-                    if (i + 1 < args.Length && int.TryParse(args[i + 1], out int ps)) { preSoakDuration = ps; i++; }
+                    if (i + 1 < args.Length && int.TryParse(args[i + 1], out int ps)) { customPreSoakDuration = ps; i++; }
                     break;
                 case "--loops":
-                    if (i + 1 < args.Length && int.TryParse(args[i + 1], out int l)) { loops = l; i++; }
+                    if (i + 1 < args.Length && int.TryParse(args[i + 1], out int l)) { customLoops = l; i++; }
                     break;
                 case "--soak":
-                    if (i + 1 < args.Length && int.TryParse(args[i + 1], out int s)) { soakSeconds = s; i++; }
+                    if (i + 1 < args.Length && int.TryParse(args[i + 1], out int s)) { customSoakSeconds = s; i++; }
                     break;
                 case "--idle":
                 case "--cooldown":
-                    if (i + 1 < args.Length && int.TryParse(args[i + 1], out int idle)) { idleSeconds = idle; i++; }
+                    if (i + 1 < args.Length && int.TryParse(args[i + 1], out int idle)) { customIdleSeconds = idle; i++; }
                     break;
                 case "--log":
                     // Already handled above
@@ -63,6 +61,12 @@ class Program
                     return;
             }
         }
+
+        // --- Final Parameter Resolution ---
+        int soakSeconds = customSoakSeconds ?? (isSystemMode ? 120 : 30);
+        int idleSeconds = customIdleSeconds ?? (isSystemMode ? 30 : 10);
+        int loops = customLoops ?? (isSystemMode ? 1 : 7);
+        int preSoakDuration = customPreSoakDuration ?? 30;
         
         using var manager = new ThermalTestManager();
         

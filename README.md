@@ -54,7 +54,7 @@ Run the standalone executable as Administrator.
 ## Technical Details
 *   **Engine:** .NET 10 (LTS)
 *   **Sensors:** LibreHardwareMonitorLib (requires admin privileges, sorry)
-*   **Load Generator:** Headless Prime95 (Windows Service version, fetched at runtime)
+*   **Load Generator:** Headless Prime95 (currently v30.19, fetched at runtime if not present)
 *   **Logging:** Results and raw sensor data can be saved to `theta_nator.log` though this is not enabled by default
 
 Yes, a robot helped write this. Don't hold it against me. Genuine feedback & contributions encouraged <3
