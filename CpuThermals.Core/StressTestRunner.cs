@@ -20,7 +20,7 @@ public class StressTestRunner : IDisposable
     {
         _baseDir = AppDomain.CurrentDomain.BaseDirectory;
         _toolsDir = Path.Combine(_baseDir, "tools", "prime95");
-        _primeExePath = Path.Combine(_toolsDir, "prime95.exe");
+        _primeExePath = Path.Combine(_toolsDir, "ntprime64.exe");
     }
 
     public async Task EnsureDownloadedAsync()
