@@ -58,3 +58,7 @@ Run the standalone executable as Administrator.
 *   **Logging:** Results and raw sensor data can be saved to `theta_nator.log` though this is not enabled by default
 
 Yes, a robot helped write this. Don't hold it against me. Genuine feedback & contributions encouraged <3
+
+## Comparative results
+Open an issue if you want to contribute your measurements as an example data point!
+* My 13900KF with a chonky water loop (EK Quantum Velocity² & EK Quantum Surface X360M) gets about 0.21°C/W - i should probably repaste it.
