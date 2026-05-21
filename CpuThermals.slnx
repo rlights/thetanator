@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CpuThermals.Console/CpuThermals.Console.csproj" />
+  <Project Path="CpuThermals.Core/CpuThermals.Core.csproj" />
+</Solution>
