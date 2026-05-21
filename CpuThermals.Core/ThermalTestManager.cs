@@ -104,7 +104,7 @@ public class ThermalTestManager : IDisposable
             var loadData = await CollectDataAsync(loadDuration, 250, ct);
             allLoadData.AddRange(loadData);
 
-            // 3. Aligned Trough Search (High-Frequency)
+            // 3. Aligned Trough Search
             DebugLogger.Log("Killing load and searching for thermal trough (50ms polling)...");
             
             // Capture Load Baseline (final 2s of LoadData)

@@ -52,7 +52,7 @@ public class StressTestRunner : IDisposable
             DebugLogger.Log("Prime95 setup complete.");
         }
 
-        // Optimization: Prepare the INI once during initialization, not in every loop.
+        // Prepare the INI once during initialization
         PreparePrimeIni();
     }
 

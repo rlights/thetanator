@@ -8,10 +8,8 @@ public static class DebugLogger
     private static readonly string LogPath = "theta_nator.log";
     public static bool IsLoggingEnabled { get; set; } = false;
 
-    /// <summary>
     /// Logs a message to the console and optionally to a file. 
     /// Ensures that any carriage-return progress lines are cleared first.
-    /// </summary>
     public static void Log(string message)
     {
         string timestampedMessage = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}";
@@ -43,10 +41,7 @@ public static class DebugLogger
         }
     }
 
-    /// <summary>
-    /// Specifically for real-time updating lines that use \r.
-    /// Does not log to file to avoid disk thrashing.
-    /// </summary>
+    /// Specifically for real-time updating lines that use \r
     public static void LogProgress(string message)
     {
         try 
