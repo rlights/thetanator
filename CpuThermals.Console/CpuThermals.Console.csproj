@@ -11,6 +11,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+
+    <!-- 
+      Optimization for 'Lite' Single-File builds:
+      Force the compiler to ignore non-Windows native assets from transitive dependencies 
+      (like System.IO.Ports pulling in Linux/Android/macOS runtimes).
+    -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <PublishSingleFile>true</PublishSingleFile>
+    <SelfContained>false</SelfContained>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
 
 </Project>

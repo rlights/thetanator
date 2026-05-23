@@ -27,6 +27,19 @@ This is designed for looking at the effectiveness of your cooling system as a wh
 * This is done with a single long soak (default 120s).
 * Best for benchmarking different fan curves or checking for radiator dust buildup. Actually, just go clean it anyway. Trust me...
 
+## Build instructions
+.NET 10 SDK must be installed on the system. Built with 10.0.204 LTS.
+
+To compile to a single self contained exe:  
+`dotnet publish CpuThermals.Console -c Release -o ./releases/full /p:SelfContained=true /p:DebugType=None /p:DebugSymbols=false /p:IncludeNativeLibrariesForSelfExtract=true /p:PublishSingleFile=true /p:EnableCompressionInSingleFile=true`
+
+Compile to single exe without dotnet runtime bundled:  
+`dotnet publish CpuThermals.Console -c Release -o ./releases/lite /p:DebugType=None /p:DebugSymbols=false /p:PublishSingleFile=true`
+
+To run directly from source:  
+`dotnet build`  
+`dotnet run --project CpuThermals.Console`
+
 ## Usage
 Run the standalone executable as Administrator.
 
