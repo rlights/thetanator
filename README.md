@@ -31,14 +31,20 @@ This is designed for looking at the effectiveness of your cooling system as a wh
 .NET 10 SDK must be installed on the system. Built with 10.0.204 LTS.
 
 To compile to a single self contained exe:  
-`dotnet publish CpuThermals.Console -c Release -o ./releases/full /p:SelfContained=true /p:DebugType=None /p:DebugSymbols=false /p:IncludeNativeLibrariesForSelfExtract=true /p:PublishSingleFile=true /p:EnableCompressionInSingleFile=true`
+```
+dotnet publish CpuThermals.Console -c Release -o ./releases/full /p:SelfContained=true /p:DebugType=None /p:DebugSymbols=false /p:IncludeNativeLibrariesForSelfExtract=true /p:PublishSingleFile=true /p:EnableCompressionInSingleFile=true
+```
 
 Compile to single exe without dotnet runtime bundled:  
-`dotnet publish CpuThermals.Console -c Release -o ./releases/lite /p:DebugType=None /p:DebugSymbols=false /p:PublishSingleFile=true`
+```
+dotnet publish CpuThermals.Console -c Release -o ./releases/lite /p:DebugType=None /p:DebugSymbols=false /p:PublishSingleFile=true
+```
 
 To run directly from source:  
-`dotnet build`  
-`dotnet run --project CpuThermals.Console`
+```
+dotnet build
+dotnet run --project CpuThermals.Console
+```
 
 ## Usage
 Run the standalone executable as Administrator.
